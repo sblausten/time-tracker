@@ -2,18 +2,24 @@
 The challenge is to build a small full stack web app, that can help a freelancer track their time.
 
 ### Approach
-Initially considered handling state all on backend, so sending a POST for starting and stopping as well as saving a 
-session. Benefit would be that you have persistance cross browser window - so if someone closed window it would not lose session.
 
-For simplicity and first MVP went with client side state management and only added endpoint for saving. 
 
-To avoid implementing user management and login, I opted for a uri based user persistance mechanism where users must save 
-their initial uri and re-enter it if they wish to associate a new session with old ones. The downside of this is 
-that it is not completely secure and users have to store a long uri somewhere. 
+
+#### State management
+Initially considered handling state all on backend i.e. sending a POST for starting and stopping as well as saving a 
+session. The benefit would have been that you have persistence cross browser window - so if someone closed window it 
+would not lose session. However this would only work after persistent user management was added (see below), so for 
+simplicity I went with client side state management and only added an endpoint for saving a session. I avoided Redux 
+as the standard React state management was adequate for the requirements and complexity of the app at this stage. 
+
+#### Users
+I did not implement a way for users to retrieve previous sessions once they closed or refreshed the browser window as it 
+was not specified, but I built in a concept of a user id using a uuri. It would be easy to enable users to link browser 
+sessions by prompting them to save their initial uuid and re-enter it if they wish to associate a new session with old 
+ones. The downside of this is that it is not completely secure and users have to store a long uri somewhere but it would 
+be a simple first step to user persistence. 
 
 ### AC's
-It should satisfy these user stories:
-
 * As a user, I want to be able to start a time tracking session
 
 * As a user, I want to be able to stop a time tracking session
