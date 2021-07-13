@@ -22,17 +22,24 @@ const Timer = (props) => {
     };
 
     const useSave = (sessionName) => {
-        if (timerState === STOPPED) {
+        function reset() {
+            setIsSaved(false);
+            setError(undefined);
             setIsLoading(true);
+        }
+
+        if (timerState === STOPPED) {
+            reset();
             client.saveSession(props.userId, startTime, stopTime, sessionName)
                 .then(handleErrors)
                 .then(
-                    (result) => {
+                    result => {
                         setIsLoading(false);
                         console.log("Saved session: ", result);
                         setIsSaved(true);
                     },
-                    (networkError) => {
+                    networkError => {
+                        setIsLoading(false);
                         console.log("NetworkError");
                         handleError(networkError);
                     }

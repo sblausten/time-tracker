@@ -1,6 +1,8 @@
+import config from '../application'
+
 
 export const handleErrors = (response) => {
-    if (!response.ok) {
+    if (response.status === 500) {
         const errorMessage = "Failed to save session. Please try again.";
         console.log(`Error saving session: ${response.status} - ${response.url}`);
         throw Error(errorMessage);
@@ -11,8 +13,6 @@ export const handleErrors = (response) => {
 const postData = (url, data) => {
     return fetch(url, {
         method: 'POST',
-        mode: 'cors',
-        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -21,7 +21,8 @@ const postData = (url, data) => {
 };
 
 const saveSession = (userId, start, end, sessionName) => {
-    const url = `/v1/users/${userId}/session`;
+    const SERVER_URL = process.env.SERVER_URL;
+    const url = `${SERVER_URL || config.localServer}/v1/users/${userId}/session`;
 
     const body = {
         start: start.toISOString(),

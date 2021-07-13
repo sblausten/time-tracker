@@ -1,0 +1,6 @@
+{
+  "Db": {
+    "Name": "alarm-digest",
+    "LocalAddress": "mongodb://localhost:27017"
+  }
+}
