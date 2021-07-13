@@ -27,6 +27,7 @@ const saveSession = (userId, start, end, sessionName) => {
     const body = {
         start: start.toISOString(),
         end: end.toISOString(),
+        duration: end - start,
         name: sessionName
     };
 
