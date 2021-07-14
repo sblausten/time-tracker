@@ -1,8 +1,8 @@
 import config from '../application'
 
 
-export const handleErrors = (response) => {
-    if (response.status === 500) {
+export const handleErrorOnSave = (response) => {
+    if (!response.ok) {
         const errorMessage = "Failed to save session. Please try again.";
         console.log(`Error saving session: ${response.status} - ${response.url}`);
         throw Error(errorMessage);

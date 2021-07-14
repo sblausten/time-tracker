@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TimerControl from "./TimerControl";
-import {client, handleErrors} from "../http/client";
+import {client, handleErrorOnSave} from "../http/client";
 import PropTypes from 'prop-types';
 import TimerSave from "./TimerSave";
 
@@ -31,7 +31,7 @@ const Timer = (props) => {
         if (timerState === STOPPED) {
             reset();
             client.saveSession(userId, startTime, stopTime, sessionName)
-                .then(handleErrors)
+                .then(handleErrorOnSave)
                 .then(
                     result => {
                         setIsLoading(false);
