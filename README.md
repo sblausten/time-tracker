@@ -1,5 +1,5 @@
-### Pento tech challenge
-The challenge is to build a small full stack web app, that can help a freelancer track their time.
+### Time Tracker
+This is a small full stack web app, that can help a freelancer track their time.
 
 ### Approach
 
