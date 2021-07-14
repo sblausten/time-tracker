@@ -34,4 +34,11 @@ const saveSession = (userId, start, end, sessionName) => {
     return postData(url, body)
 };
 
-export const client = { saveSession };
+const getSessions = (userId) => {
+    const SERVER_URL = process.env.SERVER_URL;
+    const url = `${SERVER_URL || config.localServer}/v1/users/${userId}/sessions`;
+
+    return fetch(url);
+};
+
+export const client = { saveSession, getSessions };

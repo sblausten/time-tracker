@@ -9,15 +9,15 @@ import (
 )
 
 type SessionSummary struct {
-	SessionName string `json: name`
+	SessionName string `json:"name"`
 	Start       string `json:"start"`
 	End         string `json:"end"`
-	Duration    int64 `json: duration`
+	Duration    int64 `json:"duration"`
 }
 
 type SessionsResponse struct {
-	UserId      string `json: userId`
-	Sessions  	[]SessionSummary
+	UserId      string `json:"userId"`
+	Sessions  	[]SessionSummary `json:"sessions"`
 }
 
 func GetSessions(sessionDao dao.SessionDaoInterface) func(w http.ResponseWriter, r *http.Request) {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import TimerControl from "./TimerControl";
 import {client, handleErrors} from "../http/client";
 import PropTypes from 'prop-types';
@@ -8,12 +8,12 @@ export const STOPPED = "Start";
 export const STARTED = "Stop";
 
 const Timer = (props) => {
+    const { userId, isSaved, setIsSaved} = props
     const [timerState, setTimerState] = useState(STOPPED);
     const [startTime, setStartTime] = useState(undefined);
     const [stopTime, setStopTime] = useState(undefined);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [isSaved, setIsSaved] = useState(false);
 
     const handleError = (error) => {
         setIsLoading(false);
@@ -30,7 +30,7 @@ const Timer = (props) => {
 
         if (timerState === STOPPED) {
             reset();
-            client.saveSession(props.userId, startTime, stopTime, sessionName)
+            client.saveSession(userId, startTime, stopTime, sessionName)
                 .then(handleErrors)
                 .then(
                     result => {
@@ -73,7 +73,9 @@ const Timer = (props) => {
 };
 
 Timer.propTypes = {
-    userId: PropTypes.string
+    userId: PropTypes.string,
+    isSaved: PropTypes.bool,
+    setSessionSaved: PropTypes.func
 };
 
 export default Timer
