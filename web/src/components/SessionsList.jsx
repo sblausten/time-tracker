@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {client, handleErrorOnSave} from "../http/client";
 import moment from 'moment';
+import PropTypes from "prop-types";
+import Timer from "./Timer";
 
 const SessionsList = (props) => {
     const {userId, isSaved} = props;
@@ -51,6 +53,11 @@ const SessionsList = (props) => {
         </div>
     )
 
+};
+
+SessionsList.propTypes = {
+    userId: PropTypes.string,
+    isSaved: PropTypes.bool
 };
 
 export default SessionsList;

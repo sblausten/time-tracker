@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Timer from "./components/Timer";
 import SessionsList from "./components/SessionsList";
 import { v4 as uuidv4 } from 'uuid';
+import UserId from "./components/UserId";
 
 const App = () => {
     const [userId, setUserId] = useState(uuidv4());
@@ -10,7 +11,7 @@ const App = () => {
 
     return (
         <div className="app">
-            <div className="userInfo">Your session id is: {userId}</div>
+            <UserId setUserId={setUserId} userId={userId} />
             <Timer userId={userId} isSaved={isSaved} setIsSaved={setIsSaved}/>
             <SessionsList userId={userId} isSaved={isSaved} />
         </div>

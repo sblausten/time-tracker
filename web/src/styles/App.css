@@ -3,11 +3,16 @@ table, th, td {
     border: 1px solid black;
 }
 
-.userInfo {
+.user {
     margin-top: 20px;
     margin-left: 10px;
     font-size: large;
     font-weight: bolder;
+}
+
+.user__update {
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .timer {
